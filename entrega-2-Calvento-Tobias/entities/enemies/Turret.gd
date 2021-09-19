@@ -9,6 +9,8 @@ var player
 
 func set_initial_values(container,player):
 	projectile_container = container
+	position.x = randi() % 800 + 1 
+	position.y = randi() % int(player.position.y)-50
 	self.player = player
 	$Timer.start()
 	

@@ -1,10 +1,23 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/background.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/floor.png" type="Texture" id=3]
 [ext_resource path="res://Main.gd" type="Script" id=4]
 [ext_resource path="res://entities/enemies/Turret.tscn" type="PackedScene" id=5]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+
+export (PackedScene) var turret:PackedScene
+
+func create(player, quantity):
+	for n in quantity:
+		var turretT = turret.instance()
+		self.add_child(turretT)
+		turretT.set_initial_values(self,player)
+"
 
 [node name="Main" type="Node"]
 script = ExtResource( 4 )
@@ -35,11 +48,6 @@ __meta__ = {
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 413.003, 395.272 )
 
-[node name="Turret" parent="." instance=ExtResource( 5 )]
-position = Vector2( 206, 159 )
-
-[node name="Turret2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 395, 136 )
-
-[node name="Turret3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 663, 140 )
+[node name="TurretFactory" type="Node" parent="."]
+script = SubResource( 1 )
+turret = ExtResource( 5 )
