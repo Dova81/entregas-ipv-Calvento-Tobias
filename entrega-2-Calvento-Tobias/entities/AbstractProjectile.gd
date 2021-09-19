@@ -12,14 +12,15 @@ func _ready():
 
 func set_starting_values(starting_position:Vector2, direction2:Vector2):
 	global_position = starting_position
-	self.direction	= direction2
 	$Timer.start()
+	self.direction= direction2
 	set_physics_process(true)
 	
 func _physics_process(delta):
 	position += direction*speed*delta
 
-
 func _on_Timer_timeout():
 	emit_signal("delete_requested",self)
 
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()
