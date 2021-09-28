@@ -25,7 +25,6 @@ func fire_at_player():
 
 func _on_DetectionArea_body_entered(body):
 	if target == null:
-		print("llegue")
 		target = body
 		fire_timer.start()
 
