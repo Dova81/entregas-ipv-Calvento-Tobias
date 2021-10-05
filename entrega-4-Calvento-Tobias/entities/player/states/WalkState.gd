@@ -7,6 +7,10 @@ func handle_input(event:InputEvent):
 	elif event.is_action_pressed("dash"):
 		emit_signal("finished", "dash")
 
+func notify_hit(health:float):
+	if health == 0:
+		emit_signal("finished", "dead")
+
 func update(delta):
 	parent._handle_cannon_actions()
 	parent._handle_move_input()

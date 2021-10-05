@@ -13,4 +13,4 @@ func _ready():
 
 func notify_hit(amount):
 	PlayerData.current_health += min(amount, PlayerData.max_health)
-	print(PlayerData.current_health)
+	current_state.notify_hit(PlayerData.current_health)

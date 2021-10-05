@@ -29,9 +29,8 @@ var stop_on_slope:bool = true
 
 
 func _ready():
-	state_machine.set_parent(self)
 	PlayerData.call_deferred("set_max_health", max_health)
-
+	state_machine.set_parent(self)
 
 func initialize(projectile_container):
 	self.projectile_container = projectile_container
